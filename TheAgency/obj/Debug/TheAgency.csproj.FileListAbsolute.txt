@@ -1,0 +1,5 @@
+c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\bin\TheAgency.dll
+c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\bin\TheAgency.pdb
+c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
+c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.dll
+c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.pdb
