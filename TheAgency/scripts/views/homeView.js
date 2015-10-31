@@ -2,6 +2,9 @@
  function ($, _, Backbone, Marionette, L, Handlebars, tmpl, MarkerView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
+         ui: {
+             navnar: '#navbar-custom-menu'
+         },
          regions: {
              filter: '#filter',
              navbar: '#navbar-custom-menu'
@@ -24,6 +27,7 @@
              }).addTo(map);
 
              this.showMarkers(this.collection.toJSON(), map);
+             this.makeMenu();
              return this;
          },
          showMarkers: function (races, map) {
@@ -118,14 +122,81 @@
                 }
              ];
 
+             var notifications = [
+                 {
+                     icon: 'fa-hand-scissors-o',
+                     color: 'text-green',
+                     text: 'All tasks completed!'
+                 },
+                 {
+                     icon: 'fa-warning',
+                     color: 'text-red',
+                     text: 'Something happend...'
+                 },
+                 {
+                     icon: 'fa-user',
+                     color: 'text-aqua',
+                     text: 'New user registered'
+                 },
+                 {
+                     icon: 'fa-users',
+                     color: 'text-yellow',
+                     text: 'New runners club added'
+                 },
+                 {
+                     icon: 'fa-shopping-cart',
+                     color: 'text-blue',
+                     text: 'You have 5 items in shoping cart.'
+                 }
+             ];
+
+             var tasks = [
+                 {
+                     url: '/tasks/1',
+                     complete: 10,
+                     text: 'Separate html on templates',
+                     color: 'progress-bar-aqua'
+                 },
+                 {
+                     url: '/tasks/2',
+                     complete: 12,
+                     text: 'Create backbone models',
+                     color: 'progress-bar-red'
+                 },
+                 {
+                     url: '/tasks/3',
+                     complete: 8,
+                     text: 'Create marionette views',
+                     color: 'progress-bar-green'
+                 },
+                 {
+                     url: '/tasks/4',
+                     complete: 1,
+                     text: 'Create api',
+                     color: 'progress-bar-blue'
+                 },
+                 {
+                     url: '/tasks/5',
+                     complete: 60,
+                     text: 'Make design',
+                     color: 'progress-bar-yellow'
+                 },
+                 {
+                     url: '/tasks/6',
+                     complete: 1,
+                     text: 'Organize test',
+                     color: 'progress-bar-black'
+                 }
+             ];
              var menuItemsCollection = new Backbone.Model({
-                 messages: new Backbone.Collection({ collection: messages }),
-                 notifications: new Backbone.Collection(),
-                 tasks: new Backbone.Collection(),
+                 messages: new Backbone.Collection(messages),
+                 notifications: new Backbone.Collection(notifications),
+                 tasks: new Backbone.Collection(tasks),
              });
 
              var navbarView = new NavbarCustomMenuView({ model: menuItemsCollection });
-             this.navbar.show(navbarView);
+             navbarView.render();
+             $('#navbar-custom-menu').html(navbarView.el);
          },
          addCreateRaceButton: function () {
              var btn = document.createElement('input');

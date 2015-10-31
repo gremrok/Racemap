@@ -950,8 +950,10 @@
     <Content Include="scripts\views\navbarCustomMenuView.js" />
     <Content Include="scripts\views\notifyCollectionView.js" />
     <Content Include="scripts\views\notifyItemView.js" />
+    <Content Include="scripts\views\notifyView.js" />
     <Content Include="scripts\views\raceFilterView.js" />
     <Content Include="scripts\views\taskCollectionView.js" />
+    <Content Include="scripts\views\taskView.js" />
     <Content Include="scripts\views\taskItemView.js" />
     <Content Include="scripts\views\userItemView.js" />
     <Content Include="index.html" />
@@ -960,13 +962,12 @@
     <Content Include="styles\site.css" />
     <Content Include="templates\markerView.html" />
     <Content Include="templates\msgNotify.html" />
-    <Content Include="templates\msgNotifyCollection.html" />
     <Content Include="templates\msgNotifyItem.html" />
     <Content Include="templates\navbarCustomMenu.html" />
-    <Content Include="templates\notifyCollection.html" />
+    <Content Include="templates\notify.html" />
     <Content Include="templates\notifyItem.html" />
     <Content Include="templates\raceFilter.html" />
-    <Content Include="templates\taskCollection.html" />
+    <Content Include="templates\task.html" />
     <Content Include="templates\taskItem.html" />
     <Content Include="templates\userItem.html" />
     <Content Include="Web.config" />

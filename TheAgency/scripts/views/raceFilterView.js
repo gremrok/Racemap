@@ -10,7 +10,7 @@
             $target.toggleClass('down');
             var getValue = function (item) {
                 return parseInt($(item).attr('distance'));
-            }
+            };
             var distances = _.map($('.down', $target.parent().parent()), function (item) {
                 return getValue(item);
             }) || [];

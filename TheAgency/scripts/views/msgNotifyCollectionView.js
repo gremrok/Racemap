@@ -1,7 +1,8 @@
-﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'handlebars', 'views/msgNotifyItemView', 'text!../../templates/msgNotifyCollection.html'], function ($, _, Backbone, Marionette, Handlebars, MsgNotifyItemView, tmpl) {
+﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'views/msgNotifyItemView'], function ($, _, Backbone, Marionette, MsgNotifyItemView) {
     var MsgNotifyCollectionView = Marionette.CollectionView.extend({
         childView: MsgNotifyItemView,
-        template: Handlebars.compile(tmpl)
+        tagName: 'ul',
+        className: 'menu'
     });
     return MsgNotifyCollectionView;
 });

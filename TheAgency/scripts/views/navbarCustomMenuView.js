@@ -7,8 +7,8 @@
         'handlebars',
         'text!../../templates/navbarCustomMenu.html',
         'views/msgNotifyView',
-        'views/notifyCollectionView',
-        'views/taskCollectionView',
+        'views/notifyView',
+        'views/taskView',
         'views/userItemView'
     ],
     function (
@@ -19,8 +19,8 @@
         Handlebars,
         tmpl,
         MsgNotifyView,
-        NotifyCollectionView,
-        TaskCollectionView,
+        NotifyView,
+        TaskView,
         UserItemView
     ) {
     var NavbarCustomMenuView = Marionette.ItemView.extend({
@@ -30,27 +30,27 @@
         initialize: function (options) {
             this.options = options;
         },
-
+        ui: {
+            messagesMenuItem: '.messages-menu',
+            notificationsMenuItem: '.notifications-menu',
+            tasksMenuItem: '.tasks-menu'
+        },
         onRender: function () {
             
             var model = this.model;
-            var messageCollection = model.get('messages');
-            var notoficationCollection = model.get('notifications');
-            var taskCollection = model.get('tasks');
-
+            
             var msgNotifyView = new MsgNotifyView({ model: model });
             msgNotifyView.render();
-            console.log(msgNotifyView.$el.html());
+            this.ui.messagesMenuItem.html(msgNotifyView.$el.html());
             
-            //var notifyCollection = [];
-            //var notifyCollectionView = new NotifyCollectionView(notifyCollection);
-            //notifyCollectionView.render();
-            //this.ui.notificationsMenuItem.html(notifyCollectionView.$el.html());
+            
+            var notifyView = new NotifyView({model: model});
+            notifyView.render();
+            this.ui.notificationsMenuItem.html(notifyView.$el.html());
 
-            //var taskCollection = [];
-            //var taskCollectionView = new TaskCollectionView(taskCollection);
-            //taskCollectionView.render();
-            //this.ui.tasksMenuItem.html(taskCollectionView.$el.html());
+            var taskView = new TaskView({model: model});
+            taskView.render();
+            this.ui.tasksMenuItem.html(taskView.$el.html());
 
             //var userItem = {};
             //var userItemView = new UserItemView(userItem);

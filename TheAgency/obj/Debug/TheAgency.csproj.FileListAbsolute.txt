@@ -3,3 +3,8 @@ c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\bin\Th
 c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
 c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.dll
 c:\users\kaktus\documents\visual studio 2012\Projects\TheAgency\TheAgency\obj\Debug\TheAgency.pdb
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\TheAgency.dll
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\TheAgency.pdb
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.dll
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.pdb
