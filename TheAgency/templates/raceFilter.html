@@ -14,4 +14,253 @@
         <a distance="100+" id="Button4" class="btn btn-xs btn-flat"><i class="text-sm">100+</i></a>
 
     </span>
+    <div class="" id="SearchOuter" style="color: whitesmoke">
+        <label class="margTop15" for="SearchTerm">Название события</label>
+        <input style="width: 100%; margin-right: 5%" class="text-box single-line" id="SearchTerm" name="SearchTerm" type="text" value="marathon">
+
+        <label class="margTop15 margBot10">Диапазон дат <span class="link margLeft5" id="clearDate" style="font-size: 14px;">Очистить</span></label>
+        <div class="date-text-box">
+            <input type="text" id="start-date" placeholder="От даты" class="hasDatepicker">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </div>
+        <div class="date-text-box">
+            <input type="text" id="end-date" placeholder="До даты" class="hasDatepicker">
+            <span class="glyphicon glyphicon-calendar"></span>
+        </div>
+        <label class="margTop15 margBo10">Место проведения события <span class="link margLeft5" id="clearLocation" style="font-size: 14px;">Очистить</span></label>
+        <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+            <input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; display: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);">
+            <input class="text-box tt-query" id="Location" name="Location" placeholder="Город, штат" type="text" value="Saint Petersburg, NIZ" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: middle; background-color: transparent;"><span style="position: absolute; left: -9999px; visibility: hidden; white-space: nowrap; font-family: 'Open Sans', sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></span><span class="tt-dropdown-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;"></span></span>
+        <select data-val="true" data-val-number="The field WithinRange must be a number." data-val-required="The WithinRange field is required." id="WithinRange" name="WithinRange" style="vertical-align: middle; ">
+            <option selected="selected" value="25">25 Миль</option>
+            <option value="50">50 Миль</option>
+            <option value="100">100 Миль</option>
+            <option value="250">250 Миль</option>
+            <option value="500">500 Миль</option>
+        </select>
+        <label class="margTop15">Категории и дистанции</label>
+        <script type="text/javascript">
+            $(function () {
+                $("#CategoriesFilter_RunningCategory").on('change', function () {
+                    $('#running-cat input:checkbox').prop('checked', this.checked);
+                });
+                $("#CategoriesFilter_TriathlonCategory").on('change', function () {
+                    $('#multisport-cat input:checkbox').prop('checked', this.checked);
+                });
+                $("#CategoriesFilter_MoreCategories").on('change', function () {
+                    $('#other-cat input:checkbox').prop('checked', this.checked);
+                });
+                $('#running-cat input:checkbox').on('change', function () {
+                    checkBoxGroupCheckState('running-cat', 'CategoriesFilter_RunningCategory');
+                });
+                $('#multisport-cat input:checkbox').on('change', function () {
+                    checkBoxGroupCheckState('multisport-cat', 'CategoriesFilter_TriathlonCategory');
+                });
+                $('#other-cat input:checkbox').on('change', function () {
+                    checkBoxGroupCheckState('other-cat', 'CategoriesFilter_MoreCategories');
+                });
+                function checkBoxGroupCheckState(groupEl, mainCheckBoxEl) {
+                    var checkedCount = $('#' + groupEl + ' input:checkbox:checked').length;
+                    var total = $('#' + groupEl + ' input:checkbox').length;
+                    if (!checkedCount) {
+                        $('#' + mainCheckBoxEl)
+                          .prop("indeterminate", false)
+                          .prop('checked', false);
+                    } else if (checkedCount == total) {
+                        $('#' + mainCheckBoxEl)
+                          .prop("indeterminate", false)
+                          .prop('checked', true);
+                    } else {
+                        $('#' + mainCheckBoxEl)
+                          .prop("indeterminate", true);
+                    }
+                }
+                checkBoxGroupCheckState('other-cat', 'CategoriesFilter_MoreCategories');
+                checkBoxGroupCheckState('multisport-cat', 'CategoriesFilter_TriathlonCategory');
+                checkBoxGroupCheckState('running-cat', 'CategoriesFilter_RunningCategory');
+            })
+        </script>
+        <style>
+            label {
+                margin-right: 0;
+            }
+
+            .checkbox {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+            .item {
+                margin-left: 40px;
+            }
+            .category {
+                margin-left: 25px;
+            }
+            #running-cat label,
+            #multisport-cat label,
+            #other-cat label {
+                font-size: 1em;
+                font-weight: normal;
+                margin-top: 5px;
+                display: block;
+            }
+
+            #running-cat .col-lg-6,
+            #multisport-cat .col-lg-6,
+            #other-cat .col-lg-6 {
+                padding-right: 0;
+            }
+        </style>
+
+        <h4 class="category">
+            <label class="checkbox">
+                <input checked="checked" data-val="true" data-val-required="The Running field is required." id="CategoriesFilter_RunningCategory" name="CategoriesFilter.RunningCategory" type="checkbox" value="true"><input name="CategoriesFilter.RunningCategory" type="hidden" value="false">Running</label></h4>
+        <div class="row" id="running-cat">
+            <div class="item" style="">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Up to 5K field is required." id="CategoriesFilter_RunningUpTo5k" name="CategoriesFilter.RunningUpTo5k" type="checkbox" value="true"><input name="CategoriesFilter.RunningUpTo5k" type="hidden" value="false">Up to 5K</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The 5K to 15K field is required." id="CategoriesFilter_RunningFrom5kTo15k" name="CategoriesFilter.RunningFrom5kTo15k" type="checkbox" value="true"><input name="CategoriesFilter.RunningFrom5kTo15k" type="hidden" value="false">5K to 15K</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The 15K to ½ Mara field is required." id="CategoriesFilter_RunningFrom15kToHalfMara" name="CategoriesFilter.RunningFrom15kToHalfMara" type="checkbox" value="true"><input name="CategoriesFilter.RunningFrom15kToHalfMara" type="hidden" value="false">15K to ½ Mara</label>
+            </div>
+            <div class="item">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Marathon field is required." id="CategoriesFilter_RunningMarathon" name="CategoriesFilter.RunningMarathon" type="checkbox" value="true"><input name="CategoriesFilter.RunningMarathon" type="hidden" value="false">Marathon</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Ultra field is required." id="CategoriesFilter_RunningUltra" name="CategoriesFilter.RunningUltra" type="checkbox" value="true"><input name="CategoriesFilter.RunningUltra" type="hidden" value="false">Ultra</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The ½ Mara to Mara field is required." id="CategoriesFilter_RunningFromHalfMaraToMara" name="CategoriesFilter.RunningFromHalfMaraToMara" type="checkbox" value="true"><input name="CategoriesFilter.RunningFromHalfMaraToMara" type="hidden" value="false">½ Mara to Mara</label>
+            </div>
+
+        </div>
+        <h4  class="category">
+            <label class="checkbox">
+                <input checked="checked" data-val="true" data-val-required="The Triathlon &amp; Multisport field is required." id="CategoriesFilter_TriathlonCategory" name="CategoriesFilter.TriathlonCategory" type="checkbox" value="true"><input name="CategoriesFilter.TriathlonCategory" type="hidden" value="false">Triathlon &amp; Multisport</label></h4>
+        <div class="row" id="multisport-cat">
+            <div class="item">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Sprint field is required." id="CategoriesFilter_Sprint" name="CategoriesFilter.Sprint" type="checkbox" value="true"><input name="CategoriesFilter.Sprint" type="hidden" value="false">Sprint</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Olympic field is required." id="CategoriesFilter_Olympic" name="CategoriesFilter.Olympic" type="checkbox" value="true"><input name="CategoriesFilter.Olympic" type="hidden" value="false">Olympic</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Half Ironman field is required." id="CategoriesFilter_HalfIronman" name="CategoriesFilter.HalfIronman" type="checkbox" value="true"><input name="CategoriesFilter.HalfIronman" type="hidden" value="false">Half Ironman</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Ironman and up field is required." id="CategoriesFilter_IronmanAndUp" name="CategoriesFilter.IronmanAndUp" type="checkbox" value="true"><input name="CategoriesFilter.IronmanAndUp" type="hidden" value="false">Ironman and up</label>
+            </div>
+            <div class="item">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Aquathlon field is required." id="CategoriesFilter_Aquathlon" name="CategoriesFilter.Aquathlon" type="checkbox" value="true"><input name="CategoriesFilter.Aquathlon" type="hidden" value="false">Aquathlon</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Aquabike field is required." id="CategoriesFilter_Aquabike" name="CategoriesFilter.Aquabike" type="checkbox" value="true"><input name="CategoriesFilter.Aquabike" type="hidden" value="false">Aquabike</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Duathlon field is required." id="CategoriesFilter_Duathlon" name="CategoriesFilter.Duathlon" type="checkbox" value="true"><input name="CategoriesFilter.Duathlon" type="hidden" value="false">Duathlon</label>
+            </div>
+        </div>
+        <!--
+            <h4  class="category">
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Cycling field is required." id="Checkbox1" name="CategoriesFilter.CyclingCategory" type="checkbox" value="true"><input name="CategoriesFilter.CyclingCategory" type="hidden" value="false">Cycling</label></h4>
+            <div class="row" id="Div1">
+                <div class="item">
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Sprint field is required." id="Checkbox2" name="CategoriesFilter.Sprint" type="checkbox" value="true"><input name="CategoriesFilter.Sprint" type="hidden" value="false">5K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Olympic field is required." id="Checkbox3" name="CategoriesFilter.Olympic" type="checkbox" value="true"><input name="CategoriesFilter.Olympic" type="hidden" value="false">10K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Half Ironman field is required." id="Checkbox4" name="CategoriesFilter.HalfIronman" type="checkbox" value="true"><input name="CategoriesFilter.HalfIronman" type="hidden" value="false">15K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Ironman and up field is required." id="Checkbox5" name="CategoriesFilter.IronmanAndUp" type="checkbox" value="true"><input name="CategoriesFilter.IronmanAndUp" type="hidden" value="false">25K</label>
+                </div>
+                <div class="item">
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Aquathlon field is required." id="Checkbox6" name="CategoriesFilter.Aquathlon" type="checkbox" value="true"><input name="CategoriesFilter.Aquathlon" type="hidden" value="false">50K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Aquabike field is required." id="Checkbox7" name="CategoriesFilter.Aquabike" type="checkbox" value="true"><input name="CategoriesFilter.Aquabike" type="hidden" value="false">75K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Duathlon field is required." id="Checkbox8" name="CategoriesFilter.Duathlon" type="checkbox" value="true"><input name="CategoriesFilter.Duathlon" type="hidden" value="false">100K</label>
+                </div>
+            </div>
+        
+            <h4  class="category">
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Swimming field is required." id="Checkbox9" name="CategoriesFilter.CyclingCategory" type="checkbox" value="true"><input name="CategoriesFilter.CyclingCategory" type="hidden" value="false">Swimming</label></h4>
+            <div class="row" id="Div2">
+                <div class="item">
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Sprint field is required." id="Checkbox10" name="CategoriesFilter.Sprint" type="checkbox" value="true"><input name="CategoriesFilter.Sprint" type="hidden" value="false">3K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Olympic field is required." id="Checkbox11" name="CategoriesFilter.Olympic" type="checkbox" value="true"><input name="CategoriesFilter.Olympic" type="hidden" value="false">5K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Half Ironman field is required." id="Checkbox12" name="CategoriesFilter.HalfIronman" type="checkbox" value="true"><input name="CategoriesFilter.HalfIronman" type="hidden" value="false">10K</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Ironman and up field is required." id="Checkbox13" name="CategoriesFilter.IronmanAndUp" type="checkbox" value="true"><input name="CategoriesFilter.IronmanAndUp" type="hidden" value="false">20K</label>
+                </div>
+                <div class="item">
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Aquathlon field is required." id="Checkbox14" name="CategoriesFilter.Aquathlon" type="checkbox" value="true"><input name="CategoriesFilter.Aquathlon" type="hidden" value="false">Aquathlon</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Aquabike field is required." id="Checkbox15" name="CategoriesFilter.Aquabike" type="checkbox" value="true"><input name="CategoriesFilter.Aquabike" type="hidden" value="false">Aquabike</label>
+
+                    <label class="checkbox">
+                        <input checked="checked" data-val="true" data-val-required="The Duathlon field is required." id="Checkbox16" name="CategoriesFilter.Duathlon" type="checkbox" value="true"><input name="CategoriesFilter.Duathlon" type="hidden" value="false">Duathlon</label>
+                </div>
+            </div>
+            -->
+        <h4 class="category">
+            <label class="checkbox">
+                <input checked="checked" data-val="true" data-val-required="The More Categories field is required." id="CategoriesFilter_MoreCategories" name="CategoriesFilter.MoreCategories" type="checkbox" value="true"><input name="CategoriesFilter.MoreCategories" type="hidden" value="false">More Categories</label></h4>
+        <div class="row" id="other-cat">
+            <div class="item">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Swim field is required." id="CategoriesFilter_Swim" name="CategoriesFilter.Swim" type="checkbox" value="true"><input name="CategoriesFilter.Swim" type="hidden" value="false">Swim</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Mnt Bike field is required." id="CategoriesFilter_MountainBike" name="CategoriesFilter.MountainBike" type="checkbox" value="true"><input name="CategoriesFilter.MountainBike" type="hidden" value="false">Mnt Bike</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Cycling field is required." id="CategoriesFilter_Cycling" name="CategoriesFilter.Cycling" type="checkbox" value="true"><input name="CategoriesFilter.Cycling" type="hidden" value="false">Cycling</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Snow field is required." id="CategoriesFilter_Snow" name="CategoriesFilter.Snow" type="checkbox" value="true"><input name="CategoriesFilter.Snow" type="hidden" value="false">Snow</label>
+            </div>
+            <div class="item">
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Adventure field is required." id="CategoriesFilter_Adventure" name="CategoriesFilter.Adventure" type="checkbox" value="true"><input name="CategoriesFilter.Adventure" type="hidden" value="false">Adventure</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Obstacle field is required." id="CategoriesFilter_Obstacle" name="CategoriesFilter.Obstacle" type="checkbox" value="true"><input name="CategoriesFilter.Obstacle" type="hidden" value="false">Obstacle</label>
+
+                <label class="checkbox">
+                    <input checked="checked" data-val="true" data-val-required="The Other field is required." id="CategoriesFilter_Other" name="CategoriesFilter.Other" type="checkbox" value="true"><input name="CategoriesFilter.Other" type="hidden" value="false">Other</label>
+            </div>
+        </div>
+    </div>
 </div>
