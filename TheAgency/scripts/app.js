@@ -11,7 +11,8 @@
         marionette: 'backbone.marionette',
         leaflet: 'leaflet-src',
         handlebars: 'handlebars',
-        text: 'text'
+        text: 'text',
+        jsonData: '../data'
     },
     shim: {
         'backbone': {

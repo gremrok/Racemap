@@ -8,3 +8,9 @@ C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\T
 C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
 C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.dll
 C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\obj\Debug\TheAgency.pdb
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\bin\TheAgency.dll.config
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\bin\TheAgency.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\bin\TheAgency.pdb
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.pdb

@@ -30,8 +30,7 @@
                     success: function (response) {
                         if (response.results.length > 0) {
                             var loc = response.results[0].geometry.location;
-                            r.lat = loc.lat;
-                            r.lng = loc.lng;
+                            r.lnglat = [loc.lng, loc.lat];
                         }
                     }
                 });
@@ -42,7 +41,7 @@
                                        
                     console.log(JSON.stringify(data));
                 }
-            }, 2000);
+            }, 1000);
         }
     });
 })();

@@ -4,7 +4,7 @@
         className: 'marker-item',
         templateHelpers: function () {
             return {
-                dists: this.model.get('distances').join(', ')
+                dists: this.model.get('dist').join(', ')
             };
         }
     });

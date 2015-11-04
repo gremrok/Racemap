@@ -943,6 +943,7 @@
     <Content Include="scripts\models\notify.js" />
     <Content Include="scripts\models\race.js" />
     <Content Include="scripts\models\task.js" />
+    <Content Include="ProbegParser.html" />
     <Content Include="scripts\routers\router.js" />
     <Content Include="scripts\views\homeView.js" />
     <Content Include="scripts\views\markerView.js" />
@@ -1087,6 +1088,7 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
+    <None Include="scripts\data\aims.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
