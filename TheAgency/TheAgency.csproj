@@ -943,7 +943,6 @@
     <Content Include="scripts\models\notify.js" />
     <Content Include="scripts\models\race.js" />
     <Content Include="scripts\models\task.js" />
-    <Content Include="ProbegParser.html" />
     <Content Include="scripts\routers\router.js" />
     <Content Include="scripts\views\homeView.js" />
     <Content Include="scripts\views\markerView.js" />
@@ -1096,7 +1095,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{7f258cb4-ce9a-4a64-a58b-df8cddba2c58}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="racemapModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="racemapModelStoreContainer">
+    <EntitySet Name="Race" EntityType="racemapModel.Store.Race" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RaceDistance" EntityType="racemapModel.Store.RaceDistance" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RaceHistory" EntityType="racemapModel.Store.RaceHistory" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RaceStage" EntityType="racemapModel.Store.RaceStage" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Race">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Lng" Type="decimal" />
+    <Property Name="Lat" Type="decimal" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="WebSite" Type="nvarchar" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceDistance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Length" Type="decimal" />
+    <Property Name="Duration" Type="time" />
+    <Property Name="Track" Type="nvarchar(max)" />
+    <Property Name="Price" Type="decimal" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="IsCancelled" Type="bit" />
+    <Property Name="Year" Type="int" />
+  </EntityType>
+  <EntityType Name="RaceStage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="50" />
+    <Property Name="TypeId" Type="uniqueidentifier" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="RaceHistoryId" Type="uniqueidentifier" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Track" Type="nvarchar(max)" />
+    <Property Name="OrderId" Type="int" />
+  </EntityType>
+</Schema>

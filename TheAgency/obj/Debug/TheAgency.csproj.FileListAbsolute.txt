@@ -14,3 +14,9 @@ C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\bin\Th
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.csprojResolveAssemblyReference.cache
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.dll
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\TheAgency\obj\Debug\TheAgency.pdb
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\raceDb.mdf
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\raceDb_log.ldf
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\DAL.dll
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\EntityFramework.dll
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\DAL.pdb
+C:\Users\terehin\Documents\Visual Studio 2012\Projects\theAgency\TheAgency\bin\EntityFramework.xml
