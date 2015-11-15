@@ -3,7 +3,7 @@
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
          initialize: function () {
-             this.collection = app.races;
+             this.collection = new Backbone.Collection(app.races);
          },
          onRender: function () {
              //this.$el.empty();
@@ -22,7 +22,7 @@
 
              this.showMarkers(this.collection.toJSON(), map);
              this.makeFilter();
-             this.makeMenu();
+             //this.makeMenu();
              return this;
          },
          loadData: function () {
@@ -47,13 +47,13 @@
              }
              var markers = new L.FeatureGroup();
              _.each(races, function (item) {
-                 if (item.lnglat && item.lnglat[0] && item.lnglat[1]) {
+                 if (item.lng && item.lat) {
                      var m = new Backbone.Model(item);
                      var markerView = new MarkerView({ model: m });
                      markerView.render();
 
 
-                     var marker = L.marker(item.lnglat.reverse())
+                     var marker = L.marker([item.lat, item.lng])
                      .bindPopup(markerView.$el.html())
                      .openPopup();
                      map.markers.push(marker);
@@ -71,7 +71,7 @@
                  applyFilter(model);
              });
              var applyFilter = function (model) {
-                 var races = app.races.toJSON();
+                 var races = self.collection.toJSON();
                  if (model.get('startDate')) {
                      races = _.filter(races, function (item) {
                          var date;

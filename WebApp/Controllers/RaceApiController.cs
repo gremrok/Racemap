@@ -7,19 +7,29 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using System.Web.Http;
+//using System.Web.Http;
+using AttributeRouting;
+using AttributeRouting.Web.Mvc;
+using System.Web.Mvc;
 
 namespace WebApp.Controllers
 {
-    public class RaceApiController : ApiController
+    public class RaceApiController : System.Web.Http.ApiController
     {
         private racemapEntities db = new racemapEntities();
 
         // GET api/race
-        [Route("/api/raceapi")]
+        [Route("/api/raceapi", HttpVerbs.Get)]
         public IEnumerable<Race> GetRaces()
         {
             return db.Races.AsEnumerable();
+        }
+
+        [System.Web.Http.HttpPost]
+        [Route("/api/raceapi/putraces", HttpVerbs.Post)]
+        public void PutRaces(string racesJsonString)
+        {
+            var x = racesJsonString;
         }
 
         // GET api/race/5
@@ -28,7 +38,7 @@ namespace WebApp.Controllers
             Race race = db.Races.Find(id);
             if (race == null)
             {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+                throw new System.Web.Http.HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
             }
 
             return race;
@@ -62,22 +72,22 @@ namespace WebApp.Controllers
         }
 
         // POST api/race
-        public HttpResponseMessage PostRace(Race race)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Races.Add(race);
-                db.SaveChanges();
+        //public HttpResponseMessage PostRace(Race race)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Races.Add(race);
+        //        db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-        }
+        //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
+        //        response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
+        //        return response;
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+        //    }
+        //}
 
         // DELETE api/race/5
         public HttpResponseMessage DeleteRace(Guid id)
