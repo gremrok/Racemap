@@ -1,5 +1,5 @@
-﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
- function ($, _, Backbone, Marionette, L, Handlebars, tmpl, MarkerView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
+﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
+ function ($, _, Backbone, Marionette, L, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
          initialize: function () {
@@ -46,19 +46,46 @@
                  map.removeLayer(map.markers[i]);
              }
              var markers = new L.FeatureGroup();
+             var racesByLatLng = {};
              _.each(races, function (item) {
                  if (item.lng && item.lat) {
-                     var m = new Backbone.Model(item);
+                     var latlng = [item.lat, item.lng];
+                     var coords = [];
+                     if (racesByLatLng[latlng]){
+                         racesByLatLng[latlng].push(item);
+                     }
+                     else {
+                         coords.push(item);
+                         racesByLatLng[latlng] = coords;
+                     }
+                 }
+             });
+             var keys = _.keys(racesByLatLng);
+             var setPoint = function (point, content) {
+                 var marker = L.marker([point.lat, point.lng])
+                     .bindPopup(content)
+                     .openPopup();
+                 return marker;
+             }
+             _.each(racesByLatLng, function (item) {
+                 var marker;
+                 if (item.length == 1) {
+                     var m = new Backbone.Model(item[0]);
                      var markerView = new MarkerView({ model: m });
                      markerView.render();
-
-
-                     var marker = L.marker([item.lat, item.lng])
-                     .bindPopup(markerView.$el.html())
-                     .openPopup();
-                     map.markers.push(marker);
-                     markers.addLayer(marker);
+                     var markerViewContent = markerView.$el.html();
+                     marker = setPoint(item[0], markerViewContent);
                  }
+                 else {
+                     var collection = new Backbone.Collection(item);
+                     var markerCollectionView = new MarkerCollectionView({ collection: collection });
+                     markerCollectionView.render();
+                     var markerCollectionViewContent = markerCollectionView.$el[0].outerHTML;
+                     marker = setPoint(item[0], markerCollectionViewContent);
+                 }
+
+                 map.markers.push(marker);
+                 markers.addLayer(marker);
              });
              map.addLayer(markers);
          },

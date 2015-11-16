@@ -1294,6 +1294,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\routers\router.js" />
     <Content Include="Scripts\views\homeView.js" />
+    <Content Include="Scripts\views\markerCollectionView.js" />
+    <Content Include="Scripts\views\markerListItemView.js" />
     <Content Include="Scripts\views\markerView.js" />
     <Content Include="Scripts\views\msgNotifyCollectionView.js" />
     <Content Include="Scripts\views\msgNotifyItemView.js" />
@@ -1311,6 +1313,8 @@
     <Content Include="styles\modern.css" />
     <Content Include="styles\site.css" />
     <Content Include="templates\home.html" />
+    <Content Include="templates\markerCollection.html" />
+    <Content Include="templates\markerListItem.html" />
     <Content Include="templates\markerView.html" />
     <Content Include="templates\msgNotify.html" />
     <Content Include="templates\msgNotifyItem.html" />

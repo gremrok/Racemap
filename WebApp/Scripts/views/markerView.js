@@ -5,7 +5,7 @@
         templateHelpers: function () {
             return {
                 dists: this.model.get('distances'),
-                url: this.model.get('sites').join(' ')
+                sites: this.model.get('sites')
             };
         }
     });
