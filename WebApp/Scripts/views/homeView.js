@@ -125,11 +125,11 @@
                          return date <= model.get('endDate');
                      });
                  }
-                 if (model.get('distances').length > 0) {
+                 if (model.get('categories').length > 0) {
                      var found = [];
-                     _.each(model.get('distances'), function (distance) {
+                     _.each(model.get('categories'), function (category) {
                          var filtered = _.filter(races, function (item) {
-                             return _.contains(item.distances, distance);
+                             return _.contains(item.categories, category);
                          });
                          _.each(filtered, function (item) {
                              if (!_.contains(found, item)) {

@@ -3,51 +3,46 @@
         template: Handlebars.compile(tmpl),
         events: {
             'click a[distance]': 'toggleBtnFilterDistance',
-            'keyup input': 'filterTextChanged',
+            'keyup input[name="q"]': 'filterTextChanged',
             'change #start-date': 'startDateChanged',
             'change #end-date': 'endDateChanged',
+            'change input[type="checkbox"]': 'categoryChanged',
+            'click #search-btn': 'nameChanged'
         },
-        initialize: function(options){
+        initialize: function (options) {
             this.options = options;
         },
         templateHelpers: function () {
             var map = [
-                'До 5 км',
-                'От 5 до 10 км',
-                'От 10 до 15 км',
-                'От 15 до ПМ',
-                'От ПМ до М',
-                'Сверхмарафон'
+                { id: 0, name: 'До 5 км' },
+                { id: 1, name: 'От 5 до 10 км' },
+                { id: 2, name: 'От 10 до 15 км' },
+                { id: 3, name: 'От 15 до ПМ', },
+                { id: 4, name: 'От ПМ до М', },
+                { id: 5, name: 'Сверхмарафон' },
             ];
-            _.each(this.options.races, function (race) {
-                _.each(race.distances, function (dist) {
-                    var clear = parseFloat(dist.replace('км', '').replace(/ /g, ''));
-                    if (clear) {
-                        if (clear <= 5) {
-                            race.categoryId = 0;
-                        }
-                        else if (clear> 5 && clear <= 10) {
-                            race.categoryId = 1;
-                        }
-                        else if (clear > 10 && clear <= 15) {
-                            race.categoryId = 2;
-                        }
-                        else if (clear > 15 && clear <= 21.1) {
-                            race.categoryId = 3;
-                        }
-                        else if (clear > 21.1 && clear <= 42.2) {
-                            race.categoryId = 4;
-                        }
-                        else if (clear > 42.2) {
-                            race.categoryId = 5;
-                        }
-                    }
-                });
-            });
-            var categories = _.groupBy(this.options.races, 'categoryId');
             return {
-                categories: _.map(_.keys(categories), function(item){ return map[item]; })
+                categories: map
             }
+        },
+        nameChanged: function(){
+            var name = $('input[name="q"]', this.$el).val();
+            this.model.set('name', name);
+            this.trigger('modelChanged', this.model);
+        },
+        categoryChanged: function(e){
+            var target = $(e.target)[0];
+            var categories = this.model.get('categories') || [];
+            if (target.checked) {
+                if (categories.indexOf(target.id) == -1) {
+                    categories.push(target.id);
+                }
+            }
+            else {
+                categories.splice(categories.indexOf(target.id), 1);
+            }
+            this.model.set('categories', categories);
+            this.trigger('modelChanged', this.model);
         },
         toggleBtnFilterDistance: function (e) {
             var $target = $(e.currentTarget);
@@ -69,7 +64,7 @@
                 this.trigger('modelChanged', this.model);
             }
         },
-        startDateChanged: function(e) {
+        startDateChanged: function (e) {
             var $target = $(e.currentTarget);
             this.model.set('startDate', new Date($target.val()));
             this.trigger('modelChanged', this.model);
@@ -80,7 +75,7 @@
             this.trigger('modelChanged', this.model);
         },
         onRender: function () {
-            
+
         }
     });
     return RaceFilterView;
