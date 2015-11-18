@@ -7,7 +7,6 @@
                 var view = new HomeView();
                 view.render();
                 view.makeFilter();
-                view.makeMenu();
                 self.renderView.call(self, view);
             });
         },

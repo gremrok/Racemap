@@ -91,7 +91,7 @@
          },
          makeFilter: function () {
              var self = this;
-             var filterView = new RaceFilterView({ model: new Race() });
+             var filterView = new RaceFilterView({ model: new Race(), races: self.collection.toJSON() });
              //todo: define filterModel (name, distances, date, ?place)
              //todo: modelEvents
              filterView.on('modelChanged', function (model) {
