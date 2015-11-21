@@ -10,7 +10,7 @@
             cityId: null,
             countryId: null,
             isFree: false,
-
+            categories: []
         },
         initialize: function () { },
 

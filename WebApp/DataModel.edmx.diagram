@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e9e942de53164feebf5d21408ed1946e" Name="Diagram1">
-        <EntityTypeShape EntityType="racemapModel.Race" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="racemapModel.RaceDistance" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="racemapModel.RaceHistory" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="racemapModel.RaceStage" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="racemapModel.RaceDistance" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="racemapModel.RaceHistory" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="racemapModel.RaceStage" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="racemapModel.Race" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

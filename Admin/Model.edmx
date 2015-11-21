@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RacemapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="WebSite" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Lat" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Lng" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="RaceSerie" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="RaceSerie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Racemap.dbo.Sheet' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Sheet">
+          <Property Name="info" Type="nvarchar" MaxLength="2550" />
+          <Property Name="name" Type="nvarchar" MaxLength="2550" />
+          <Property Name="address" Type="nvarchar" MaxLength="2550" />
+          <Property Name="person" Type="nvarchar" MaxLength="2550" />
+          <Property Name="www" Type="nvarchar" MaxLength="2550" />
+          <Property Name="email" Type="nvarchar" MaxLength="2550" />
+          <Property Name="phones" Type="nvarchar" MaxLength="2550" />
+          <Property Name="month" Type="nvarchar" MaxLength="2550" />
+          <Property Name="isAims" Type="nvarchar" MaxLength="2550" />
+          <Property Name="lat" Type="nvarchar" MaxLength="2550" />
+          <Property Name="lng" Type="nvarchar" MaxLength="2550" />
+          <Property Name="categories" Type="nvarchar" MaxLength="2550" />
+          <Property Name="startDate" Type="nvarchar" MaxLength="2550" />
+          <Property Name="endDate" Type="nvarchar" MaxLength="2550" />
+          <Property Name="fb" Type="nvarchar" MaxLength="2550" />
+          <Property Name="id" Type="nvarchar" MaxLength="2550" />
+          <Property Name="distances" Type="nvarchar" MaxLength="2550" />
+          <Property Name="emails" Type="nvarchar" MaxLength="2550" />
+          <Property Name="sites" Type="nvarchar" MaxLength="2550" />
+          <Property Name="place" Type="nvarchar" MaxLength="2550" />
+          <Property Name="F21" Type="nvarchar" MaxLength="2550" />
+        </EntityType>-->
+        <EntityContainer Name="RacemapModelStoreContainer">
+          <EntitySet Name="Race" EntityType="Self.Race" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaceSerie" EntityType="Self.RaceSerie" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RacemapModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Lng" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="RaceSerie" Type="Guid" />
+        </EntityType>
+        <EntityType Name="RaceSerie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="RacemapEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Race" EntityType="Self.Race" />
+          <EntitySet Name="RaceSerie" EntityType="Self.RaceSerie" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RacemapModelStoreContainer" CdmEntityContainer="RacemapEntities">
+          <EntitySetMapping Name="Race">
+            <EntityTypeMapping TypeName="RacemapModel.Race">
+              <MappingFragment StoreEntitySet="Race">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="RaceSerie" ColumnName="RaceSerie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaceSerie">
+            <EntityTypeMapping TypeName="RacemapModel.RaceSerie">
+              <MappingFragment StoreEntitySet="RaceSerie">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

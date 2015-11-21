@@ -1,0 +1,8 @@
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\Importer.exe.config
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\obj\Debug\Importer.csprojResolveAssemblyReference.cache
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\Importer.exe
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\Importer.pdb
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\EPPlus.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\EPPlus.xml
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\obj\Debug\Importer.exe
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\obj\Debug\Importer.pdb

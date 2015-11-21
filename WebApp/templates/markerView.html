@@ -1,6 +1,12 @@
-﻿<div class="race-name">{{{name}}}</div>
-{{#each sites}}<a href="{{{.}}}">{{{.}}}</a>&nbsp;{{/each}}
+﻿<div class="race-name">{{{Name}}}</div>
+{{{m}}}<br>
+<a href="{{{WebSite}}}">{{{WebSite}}}</a><br>
+<a href="{{{fb}}}">{{{fb}}}</a><br>
+<a href="{{{Email}}}">email</a><br>
+{{#each phones}}{{{.}}}&nbsp;{{/each}}<br>
+Контактное лицо: {{{person}}}<br>
+{{#each sites}}<a href="{{{.}}}">{{{.}}}</a>&nbsp;{{/each}}<br>
 <a>{{{city}}}</a><br>
-<a>{{{place}}}</a><br>
-<a>{{{startDate}}}</a><br>
+<a>{{{Address}}}</a><br>
+<a>{{{StartDate}}}</a><br>
 <a>Дистанции: {{{dists}}}</a>

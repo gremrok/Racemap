@@ -1,35 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="racemapModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="racemapEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="Races" EntityType="racemapModel.Race" />
-    <EntitySet Name="RaceDistances" EntityType="racemapModel.RaceDistance" />
-    <EntitySet Name="RaceHistories" EntityType="racemapModel.RaceHistory" />
-    <EntitySet Name="RaceStages" EntityType="racemapModel.RaceStage" />
+    <EntitySet Name="RaceDistance" EntityType="racemapModel.RaceDistance" />
+    <EntitySet Name="RaceHistory" EntityType="racemapModel.RaceHistory" />
+    <EntitySet Name="RaceStage" EntityType="racemapModel.RaceStage" />
+    <EntitySet Name="Race" EntityType="racemapModel.Race" />
   </EntityContainer>
-  <EntityType Name="Race">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Address" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-    <Property Name="Lng" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Lat" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Phone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="WebSite" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-    <Property Name="CategoryId" Type="Guid" />
-  </EntityType>
   <EntityType Name="RaceDistance">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="Duration" Type="Time" Precision="7" />
-    <Property Name="Track" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Track" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="RaceId" Type="Guid" />
   </EntityType>
@@ -49,13 +34,32 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="TypeId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="RaceHistoryId" Type="Guid" />
     <Property Name="StartDate" Type="DateTime" Precision="3" />
     <Property Name="EndDate" Type="DateTime" Precision="3" />
-    <Property Name="Track" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Track" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="OrderId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Race">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="WebSite" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Lat" Type="Double" />
+    <Property Name="Lng" Type="Double" />
+    <Property Name="Source" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+    <Property Name="ContactPerson" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Categories" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

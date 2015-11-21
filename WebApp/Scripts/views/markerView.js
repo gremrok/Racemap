@@ -3,9 +3,24 @@
         template: Handlebars.compile(tmpl),
         className: 'marker-item',
         templateHelpers: function () {
+            var months = [
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
+                'August',
+                'September',
+                'October',
+                'November',
+                'December'
+            ];
             return {
                 dists: this.model.get('distances'),
-                sites: this.model.get('sites')
+                sites: this.model.get('sites'),
+                m: months[this.model.get('month')-1]
             };
         }
     });

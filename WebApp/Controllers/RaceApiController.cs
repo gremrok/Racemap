@@ -19,10 +19,10 @@ namespace WebApp.Controllers
         private racemapEntities db = new racemapEntities();
 
         // GET api/race
-        [Route("/api/raceapi", HttpVerbs.Get)]
+        [Route("/api/raceapi/getRaces", HttpVerbs.Get)]
         public IEnumerable<Race> GetRaces()
         {
-            return db.Races.AsEnumerable();
+            return db.Race.AsEnumerable();
         }
 
         [System.Web.Http.HttpPost]
@@ -35,7 +35,7 @@ namespace WebApp.Controllers
         // GET api/race/5
         public Race GetRace(Guid id)
         {
-            Race race = db.Races.Find(id);
+            Race race = db.Race.Find(id);
             if (race == null)
             {
                 throw new System.Web.Http.HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
@@ -45,7 +45,7 @@ namespace WebApp.Controllers
         }
 
         // PUT api/race/5
-        public HttpResponseMessage PutRace(Guid id, Race race)
+        public HttpResponseMessage PutRace(int id, Race race)
         {
             if (!ModelState.IsValid)
             {
@@ -90,15 +90,15 @@ namespace WebApp.Controllers
         //}
 
         // DELETE api/race/5
-        public HttpResponseMessage DeleteRace(Guid id)
+        public HttpResponseMessage DeleteRace(int id)
         {
-            Race race = db.Races.Find(id);
+            Race race = db.Race.Find(id);
             if (race == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
             }
 
-            db.Races.Remove(race);
+            db.Race.Remove(race);
 
             try
             {
