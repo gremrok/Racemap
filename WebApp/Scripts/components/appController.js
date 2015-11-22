@@ -1,12 +1,17 @@
-﻿define(['jquery', 'underscore', 'backbone'], function ($, _, Backbone) {
+﻿define(['jquery', 'underscore', 'backbone', 'collections/race', 'models/race'], function ($, _, Backbone, Races, Race) {
     var AppController = {
         currentView: null,
         race: function() {
             var self = this;
             require(['views/homeView'], function(HomeView) {
+                app.races = new Races();
                 var view = new HomeView();
                 view.render();
-                view.makeFilter();
+                var filterModel = new Race({
+                    //startDate: '2015-11-01',
+                    //endDate: '2015-12-31'
+                });
+                view.makeFilter(filterModel);
                 self.renderView.call(self, view);
             });
         },

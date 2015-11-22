@@ -25,11 +25,12 @@ namespace WebApp.Controllers
             return db.Race.AsEnumerable();
         }
 
-        [System.Web.Http.HttpPost]
-        [Route("/api/raceapi/putraces", HttpVerbs.Post)]
-        public void PutRaces(string racesJsonString)
+        ////[System.Web.Http.HttpPost]
+        [Route("/api/RaceApi/postRaces", HttpVerbs.Post)]
+        public HttpResponseMessage PostRaces(IEnumerable<Race> races)
         {
-            var x = racesJsonString;
+            var x = races;
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         // GET api/race/5
@@ -72,22 +73,23 @@ namespace WebApp.Controllers
         }
 
         // POST api/race
-        //public HttpResponseMessage PostRace(Race race)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Races.Add(race);
-        //        db.SaveChanges();
+        [Route("/api/RaceApi/postRace", HttpVerbs.Post)]
+        public HttpResponseMessage PostRace(Race race)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Race.Add(race);
+                db.SaveChanges();
 
-        //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
-        //        response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
-        //        return response;
-        //    }
-        //    else
-        //    {
-        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-        //    }
-        //}
+                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
+                return response;
+            }
+            else
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+        }
 
         // DELETE api/race/5
         public HttpResponseMessage DeleteRace(int id)

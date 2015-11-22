@@ -1,28 +1,32 @@
-﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
- function ($, _, Backbone, Marionette, L, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
+﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'markerCluster', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
+ function ($, _, Backbone, Marionette, L, MC, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
          initialize: function () {
+             var self = this;
              this.collection = app.races;
+             this.listenTo(this.collection, 'reset', this.render);
+             $.ajax({
+                 url: '/api/raceapi/getRaces',
+                 method: 'GET',
+                 success: function (data) {
+                     races = data;
+                     app.races.reset(races);
+                 }
+             });
          },
          onRender: function () {
-             //this.$el.empty();
              this.$el.append(this.addCreateRaceButton());
-
-             this.collection.each(function (item) {
-                 this.addOne(item);
-             }, this);
-
-             var map = L.map('map').setView([55.753878, 37.649275], 9);
-             this.map = map;
-             map.markers = [];
-             L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-             }).addTo(map);
-
-             this.showMarkers(this.collection.toJSON(), map);
-             this.makeFilter();
-             //this.makeMenu();
+                          
+             if (!this.map) {
+                 var map = L.map('map').setView([55.753878, 37.649275], 9);
+                 this.map = map;
+                 map.markers = [];
+                 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                 }).addTo(map);
+             }
+             this.showMarkers(app.races.toJSON(), this.map);
              return this;
          },
          loadData: function () {
@@ -42,10 +46,34 @@
              return races;
          },
          showMarkers: function (races, map) {
-             for (var i = 0; i < map.markers.length; i++) {
-                 map.removeLayer(map.markers[i]);
-             }
-             var markers = new L.FeatureGroup();
+             _.each(map.markers, function (marker) {
+                 map.removeLayere(marker);
+             });
+
+             //this.collection.each(function (item) {
+             //    this.addOne(item);
+             //}, this);
+
+             var markers = L.markerClusterGroup({
+                 maxClusterRadius: 120,
+                 iconCreateFunction: function (cluster) {
+                     var markers = cluster.getAllChildMarkers();
+                     var n = markers.length;
+                     for (var i = 0; i < markers.length; i++) {
+                         n += markers[i].number;
+                     }
+                     return L.divIcon({
+                         html: n,
+                         className: 'mycluster',
+                         iconSize: L.point(40, 40)
+                     });
+                 },
+                 //Disable all of the defaults:
+                 spiderfyOnMaxZoom: false,
+                 showCoverageOnHover: false,
+                 zoomToBoundsOnClick: false
+             });
+
              var racesByLatLng = {};
              _.each(races, function (item) {
                  if (item.Lng && item.Lat) {
@@ -75,6 +103,7 @@
                      markerView.render();
                      var markerViewContent = markerView.$el.html();
                      marker = setPoint(item[0], markerViewContent);
+                     marker.number = 1;
                  }
                  else {
                      var collection = new Backbone.Collection(item);
@@ -82,18 +111,65 @@
                      markerCollectionView.render();
                      var markerCollectionViewContent = markerCollectionView.$el[0].outerHTML;
                      marker = setPoint(item[0], markerCollectionViewContent);
+                     marker.number = item.length;
                  }
 
                  map.markers.push(marker);
                  markers.addLayer(marker);
              });
              map.addLayer(markers);
+
+
+             function populateRandomVector() {
+                 for (var i = 0, latlngs = [], len = 20; i < len; i++) {
+                     latlngs.push(getRandomLatLng(map));
+                 }
+                 var path = L.polyline(latlngs);
+                 map.addLayer(path);
+             }
+             function getRandomLatLng(map) {
+                 var bounds = map.getBounds(),
+                     southWest = bounds.getSouthWest(),
+                     northEast = bounds.getNorthEast(),
+                     lngSpan = northEast.lng - southWest.lng,
+                     latSpan = northEast.lat - southWest.lat;
+
+                 return L.latLng(
+                         southWest.lat + latSpan * Math.random(),
+                         southWest.lng + lngSpan * Math.random());
+             }
+                          
+             var shownLayer, polygon;
+
+             function removePolygon() {
+                 if (shownLayer) {
+                     shownLayer.setOpacity(1);
+                     shownLayer = null;
+                 }
+                 if (polygon) {
+                     map.removeLayer(polygon);
+                     polygon = null;
+                 }
+             };
+
+             markers.on('clustermouseover', function (a) {
+                 removePolygon();
+
+                 a.layer.setOpacity(0.2);
+                 shownLayer = a.layer;
+                 polygon = L.polygon(a.layer.getConvexHull());
+                 map.addLayer(polygon);
+             });
+             markers.on('clustermouseout', removePolygon);
+             map.on('zoomend', removePolygon);
+
+
          },
-         makeFilter: function () {
+         makeFilter: function (filterModel) {
              var self = this;
-             var filterView = new RaceFilterView({ model: new Race(), races: self.collection.toJSON() });
-             //todo: define filterModel (name, distances, date, ?place)
-             //todo: modelEvents
+             var filterView = new RaceFilterView({
+                 model: filterModel
+             });
              filterView.on('modelChanged', function (model) {
                  applyFilter(model);
              });
@@ -101,30 +177,12 @@
                  var races = self.collection.toJSON();
                  if (model.get('startDate')) {
                      races = _.filter(races, function (item) {
-                         var date;
-                         if (item.date) {
-                            var dateParts = item.date.split('.');
-                            if (dateParts.length == 3) {
-                                date = new Date(dateParts[1] + '.' + dateParts[0] + '.' + dateParts[2]);
-                            }
-                        }
-                         
-                        return date >= model.get('startDate');
+                                                 
+                         return item.StartDate >= model.get('startDate')
+                                && item.StartDate <= model.get('endDate');
                      });
                  }
-                 if (model.get('endDate')) {
-                     races = _.filter(races, function (item) {
-                         var date;
-                         if (item.date) {
-                             var dateParts = item.date.split('.');
-                             if (dateParts.length == 3) {
-                                 date = new Date(dateParts[1] + '.' + dateParts[0] + '.' + dateParts[2]);
-                             }
-                         }
-
-                         return date <= model.get('endDate');
-                     });
-                 }
+                 
                  if (model.get('categories').length > 0) {
                      var found = [];
                      _.each(model.get('categories'), function (category) {
@@ -157,6 +215,7 @@
 
              filterView.render();
              $('#filter').html(filterView.el);
+             applyFilter(filterModel);
          },
          makeMenu: function () {
              var messages = [

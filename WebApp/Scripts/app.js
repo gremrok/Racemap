@@ -10,6 +10,7 @@
         modalDialog: 'backbone.ModalDialog',
         marionette: 'backbone.marionette',
         leaflet: 'leaflet-src',
+        markerCluster: 'leaflet.markercluster-src',
         handlebars: 'handlebars',
         text: 'text',
         jsonData: '../data'
@@ -29,7 +30,7 @@
         'leaflet': {
             exports: 'L'
         },
-        handlebars: {
+        'handlebars': {
             deps: [],
             exports: "Handlebars"
         }
@@ -40,6 +41,6 @@ var app = app || {};
 require(['routers/router', 'components/dataService'], function (router, dataService) {
     $(document).ready(function () {
         dataService.getData();
-        //router.start();
+        router.start();
     });
 });

@@ -178,7 +178,6 @@
     <Compile Include="Controllers\RaceApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DataModel.Context.cs">
       <DependentUpon>DataModel.Context.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1292,6 +1291,8 @@
     <Content Include="Scripts\lib\leaflet-src.js" />
     <Content Include="Scripts\lib\leaflet.css" />
     <Content Include="Scripts\lib\leaflet.js" />
+    <Content Include="Scripts\lib\leaflet.markercluster-src.js" />
+    <Content Include="Scripts\lib\MarkerCluster.css" />
     <Content Include="Scripts\lib\require.js" />
     <Content Include="Scripts\lib\text.js" />
     <Content Include="Scripts\lib\underscore.js" />
