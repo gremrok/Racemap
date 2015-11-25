@@ -23,7 +23,15 @@ namespace WebApp
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
             //            "~/Scripts/modernizr-*"));
 
-            //bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/dist/css").Include(
+                "~/dist/css/main.css", 
+                "~/dist/css/AdminLTE.min.css"));
+            bundles.Add(new StyleBundle("~/styles/").Include(
+                "~/styles/leaflet.css",
+                "~/styles/MarkerCluster.css",
+                "~/styles/MarkerCluster.Default.css",
+                //"~/styles/modern.css",
+                "~/styles/site.css"));
 
             //bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
             //            "~/Content/themes/base/jquery.ui.core.css",

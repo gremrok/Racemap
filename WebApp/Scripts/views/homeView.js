@@ -47,27 +47,23 @@
          },
          showMarkers: function (races, map) {
              _.each(map.markers, function (marker) {
-                 map.removeLayere(marker);
+                 map.removeLayer(marker);
              });
-
-             //this.collection.each(function (item) {
-             //    this.addOne(item);
-             //}, this);
 
              var markers = L.markerClusterGroup({
                  maxClusterRadius: 120,
-                 iconCreateFunction: function (cluster) {
-                     var markers = cluster.getAllChildMarkers();
-                     var n = markers.length;
-                     for (var i = 0; i < markers.length; i++) {
-                         n += markers[i].number;
-                     }
-                     return L.divIcon({
-                         html: n,
-                         className: 'mycluster',
-                         iconSize: L.point(40, 40)
-                     });
-                 },
+                 //iconCreateFunction: function (cluster) {
+                 //    var markers = cluster.getAllChildMarkers();
+                 //    var n = markers.length;
+                 //    for (var i = 0; i < markers.length; i++) {
+                 //        n += markers[i].number;
+                 //    }
+                 //    return L.divIcon({
+                 //        html: n,
+                 //        className: 'mycluster',
+                 //        iconSize: L.point(40, 40)
+                 //    });
+                 //},
                  //Disable all of the defaults:
                  spiderfyOnMaxZoom: false,
                  showCoverageOnHover: false,
