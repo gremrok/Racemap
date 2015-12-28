@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Admin.Models
 {
@@ -10,8 +11,9 @@ namespace Admin.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
-        {
-        }
+            : base("RacemapEntities")
+        { }
+        
+        public DbSet<ApplicationUser> User { get; set; }
     }
 }

@@ -12,19 +12,21 @@
     {{/each}}
         </div>
     
+    <label class="margTop15 margBot10">Диапазон дат <span class="link margLeft5" id="clearDate" style="font-size: 14px;">Очистить</span></label>
+    <div class="date-text-box">
+        <input type="text" id="start-date" placeholder="От даты" class="hasDatepicker">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </div>
+    <div class="date-text-box">
+        <input type="text" id="end-date" placeholder="До даты" class="hasDatepicker">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </div>
+
     <div class="" id="SearchOuter" style="color: whitesmoke; display:none " >
         <label class="margTop15" for="SearchTerm">Название события</label>
         <input style="width: 100%; margin-right: 5%" class="text-box single-line" id="SearchTerm" name="SearchTerm" type="text" value="marathon">
 
-        <label class="margTop15 margBot10">Диапазон дат <span class="link margLeft5" id="clearDate" style="font-size: 14px;">Очистить</span></label>
-        <div class="date-text-box">
-            <input type="text" id="start-date" placeholder="От даты" class="hasDatepicker">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </div>
-        <div class="date-text-box">
-            <input type="text" id="end-date" placeholder="До даты" class="hasDatepicker">
-            <span class="glyphicon glyphicon-calendar"></span>
-        </div>
+        
         <label class="margTop15 margBo10">Место проведения события <span class="link margLeft5" id="clearLocation" style="font-size: 14px;">Очистить</span></label>
         <span class="twitter-typeahead" style="position: relative; display: inline-block;">
             <input class="tt-hint" type="text" autocomplete="off" spellcheck="off" disabled="" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; display: none; background: none 0% 0% / auto repeat scroll padding-box border-box rgb(255, 255, 255);">

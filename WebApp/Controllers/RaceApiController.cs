@@ -22,6 +22,7 @@ namespace WebApp.Controllers
         [Route("/api/raceapi/getRaces", HttpVerbs.Get)]
         public IEnumerable<Race> GetRaces()
         {
+
             return db.Race.AsEnumerable();
         }
 
@@ -73,23 +74,23 @@ namespace WebApp.Controllers
         }
 
         // POST api/race
-        [Route("/api/RaceApi/postRace", HttpVerbs.Post)]
-        public HttpResponseMessage PostRace(Race race)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Race.Add(race);
-                db.SaveChanges();
+        //[Route("/api/RaceApi/postRace", HttpVerbs.Post)]
+        //public HttpResponseMessage PostRace(Race race)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Race.Add(race);
+        //        db.SaveChanges();
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-        }
+        //        HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, race);
+        //        response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = race.Id }));
+        //        return response;
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+        //    }
+        //}
 
         // DELETE api/race/5
         public HttpResponseMessage DeleteRace(int id)

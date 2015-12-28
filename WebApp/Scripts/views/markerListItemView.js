@@ -5,6 +5,7 @@
         tagName: 'li',
         templateHelpers: function () {
             return {
+                startDate: (new Date(this.model.get('StartDate'))).toLocaleDateString(),
                 dists: this.model.get('distances'),
                 sites: this.model.get('sites')
             };

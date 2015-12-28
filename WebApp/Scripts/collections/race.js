@@ -1,7 +1,7 @@
 ﻿/// <reference path="../models/race.js" />
 define(['backbone', 'models/race'], function (Backbone, Race) {
     var RaceList = Backbone.Collection.extend({
-
+        url: '/api/raceapi/getRaces',
         // reference to this collection's model.
         model: Race,
 

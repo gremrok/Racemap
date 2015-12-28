@@ -53,3 +53,9 @@ C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\Micros
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\obj\Debug\Admin.csprojResolveAssemblyReference.cache
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\obj\Debug\Admin.dll
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\obj\Debug\Admin.pdb
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Net.Http.Formatting.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Web.Http.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Web.Http.WebHost.dll
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Net.Http.Formatting.xml
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Web.Http.xml
+C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Admin\bin\System.Web.Http.WebHost.xml

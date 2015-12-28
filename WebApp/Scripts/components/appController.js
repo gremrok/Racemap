@@ -4,15 +4,19 @@
         race: function() {
             var self = this;
             require(['views/homeView'], function(HomeView) {
-                app.races = new Races();
-                var view = new HomeView();
-                view.render();
-                var filterModel = new Race({
-                    //startDate: '2015-11-01',
-                    //endDate: '2015-12-31'
-                });
-                view.makeFilter(filterModel);
-                self.renderView.call(self, view);
+                //app.races = new Races();
+                //app.races.fetch().done(function () {
+                    var view = new HomeView({ collection: app.races });
+                    view.render();
+                    var filterModel = new Race({
+                        //startDate: '2015-11-01',
+                        //endDate: '2015-12-31'
+                    });
+                    view.makeFilter(filterModel);
+                    self.renderView.call(self, view);
+                //});
+                
+                view.listenTo(view.collection, 'reset', 'render');
             });
         },
         details: function(id) {

@@ -1,20 +1,7 @@
-﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'markerCluster', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
- function ($, _, Backbone, Marionette, L, MC, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
+﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'markerCluster', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router', 'components/dataService'],
+ function ($, _, Backbone, Marionette, L, MC, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router, dataService) {
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
-         initialize: function () {
-             var self = this;
-             this.collection = app.races;
-             this.listenTo(this.collection, 'reset', this.render);
-             $.ajax({
-                 url: '/api/raceapi/getRaces',
-                 method: 'GET',
-                 success: function (data) {
-                     races = data;
-                     app.races.reset(races);
-                 }
-             });
-         },
          onRender: function () {
              this.$el.append(this.addCreateRaceButton());
                           
@@ -28,22 +15,6 @@
              }
              this.showMarkers(app.races.toJSON(), this.map);
              return this;
-         },
-         loadData: function () {
-             var races = app.races.toJSON();
-             _.each([], function (data) {
-                 var lnglat = [];
-                 lnglat.push(data.lng);
-                 lnglat.push(data.lat);
-                 races.push({
-                     lnglat: lnglat,
-                     place: data.address,
-                     name: data.name
-                 });
-
-             });
-
-             return races;
          },
          showMarkers: function (races, map) {
              _.each(map.markers, function (marker) {
@@ -157,6 +128,9 @@
                  map.addLayer(polygon);
              });
              markers.on('clustermouseout', removePolygon);
+             markers.on('clusterclick', function (a) {
+                 a.layer.zoomToBounds();
+             });
              map.on('zoomend', removePolygon);
 
 
