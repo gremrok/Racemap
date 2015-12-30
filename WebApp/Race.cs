@@ -13,6 +13,7 @@ namespace WebApp
     using System.Collections.Generic;
     using System.Runtime.Serialization;
     [DataContract]
+    [Serializable]
     public partial class Race
     {
         [DataMember]
@@ -22,6 +23,14 @@ namespace WebApp
         [DataMember]
         public string Description { get; set; }
         [DataMember]
+        public string Place { get; set; }
+        [DataMember]
+        public string Type { get; set; }
+        [DataMember]
+        public string Category { get; set; }
+        [DataMember]
+        public string CategoryFull { get; set; }
+        [DataMember]
         public string Address { get; set; }
         [DataMember]
         public string Phone { get; set; }
@@ -29,6 +38,12 @@ namespace WebApp
         public string Email { get; set; }
         [DataMember]
         public string WebSite { get; set; }
+        [DataMember]
+        public string Url { get; set; }
+        [DataMember]
+        public string Tags { get; set; }
+        [DataMember]
+        public Nullable<System.DateTime> Date { get; set; }
         [DataMember]
         public Nullable<System.DateTime> StartDate { get; set; }
         [DataMember]
