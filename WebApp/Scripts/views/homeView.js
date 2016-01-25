@@ -1,7 +1,13 @@
-﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'markerCluster', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router', 'components/dataService'],
- function ($, _, Backbone, Marionette, L, MC, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router, dataService) {
+﻿define(['jquery', 'underscore', 'backbone', 'marionette', 'leaflet', 'markerCluster', 'handlebars', 'text!../../templates/home.html', 'views/markerView', 'views/markerCollectionView', 'views/navbarCustomMenuView', 'views/raceFilterView', 'models/race', 'routers/router'],
+ function ($, _, Backbone, Marionette, L, MC, Handlebars, tmpl, MarkerView, MarkerCollectionView, NavbarCustomMenuView, RaceFilterView, Race, Router) {
      var homeView = Marionette.LayoutView.extend({
          template: Handlebars.compile(tmpl),
+         initialize: function() {
+             var self = this;
+             self.listenTo(app.races, 'reset', function() {
+                 self.onRender();
+             });
+         },
          onRender: function () {
              this.$el.append(this.addCreateRaceButton());
                           
@@ -85,27 +91,7 @@
                  markers.addLayer(marker);
              });
              map.addLayer(markers);
-
-
-             function populateRandomVector() {
-                 for (var i = 0, latlngs = [], len = 20; i < len; i++) {
-                     latlngs.push(getRandomLatLng(map));
-                 }
-                 var path = L.polyline(latlngs);
-                 map.addLayer(path);
-             }
-             function getRandomLatLng(map) {
-                 var bounds = map.getBounds(),
-                     southWest = bounds.getSouthWest(),
-                     northEast = bounds.getNorthEast(),
-                     lngSpan = northEast.lng - southWest.lng,
-                     latSpan = northEast.lat - southWest.lat;
-
-                 return L.latLng(
-                         southWest.lat + latSpan * Math.random(),
-                         southWest.lng + lngSpan * Math.random());
-             }
-                          
+            
              var shownLayer, polygon;
 
              function removePolygon() {
