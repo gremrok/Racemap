@@ -175,6 +175,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ChildRace.cs">
+      <DependentUpon>DataModel2016.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\RaceApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
@@ -193,22 +196,43 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="DataModel2016.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2016.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel2016.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2016.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel2016.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataModel2016.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Race.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RaceDistance.cs">
-      <DependentUpon>DataModel.tt</DependentUpon>
+      <DependentUpon>DataModel2016.tt</DependentUpon>
     </Compile>
     <Compile Include="RaceHistory.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RaceStage.cs">
+    <Compile Include="RaceSeria.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaceTag.cs">
+      <DependentUpon>DataModel2016.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RaceType.cs">
+      <DependentUpon>DataModel2016.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tag.cs">
+      <DependentUpon>DataModel2016.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +255,16 @@
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
     <Content Include="aims-races.html" />
+    <Content Include="DataModel2016.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel2016.edmx</DependentUpon>
+      <LastGenOutput>DataModel2016.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataModel2016.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataModel2016.edmx</DependentUpon>
+      <LastGenOutput>DataModel2016.cs</LastGenOutput>
+    </Content>
     <Content Include="dist\css\AdminLTE.css" />
     <Content Include="dist\css\AdminLTE.min.css" />
     <Content Include="dist\css\main.css" />
@@ -399,8 +433,10 @@
     <Content Include="build\less\timeline.less" />
     <Content Include="build\less\users-list.less" />
     <Content Include="build\less\variables.less" />
+    <Content Include="gpxer.js" />
     <Content Include="index2.html" />
     <Content Include="index3.html" />
+    <Content Include="OpenLayers.js" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
     <Content Include="plugins\ckeditor\LICENSE.md" />
     <Content Include="plugins\ckeditor\plugins\scayt\LICENSE.md" />
@@ -1195,6 +1231,7 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="probeg2015.html" />
+    <Content Include="results.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\collections\distance.js" />
     <Content Include="Scripts\collections\msgNotify.js" />
@@ -1265,6 +1302,7 @@
     <Content Include="templates\raceFilter.html" />
     <Content Include="templates\task.html" />
     <Content Include="templates\taskItem.html" />
+    <Content Include="templates\userAccount.html" />
     <Content Include="templates\userItem.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1305,6 +1343,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="geo.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataModel2016.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataModel2016.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataModel2016.edmx.diagram">
+      <DependentUpon>DataModel2016.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

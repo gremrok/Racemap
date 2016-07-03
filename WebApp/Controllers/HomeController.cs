@@ -34,8 +34,8 @@ namespace WebApp.Controllers
                         !string.IsNullOrEmpty(race.CategoryFull) ? race.CategoryFull.Replace("'", "''") : string.Empty, 
                         !string.IsNullOrEmpty(race.Url) ? race.Url.Replace("'", "''") : string.Empty,
                         !string.IsNullOrEmpty(race.Tags) ? race.Tags.Replace("'", "''") : string.Empty, 
-                        race.Lng.HasValue ? race.Lng.Value.ToString().Replace(",", ".") : "", 
-                        race.Lat.HasValue ? race.Lat.Value.ToString().Replace(",", ".") : ""));
+                        race.Lng.Replace(",", "."), 
+                        race.Lat.Replace(",", ".")));
                 
             }
             var content = sb.ToString();

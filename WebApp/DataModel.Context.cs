@@ -20,14 +20,17 @@ namespace WebApp
         {
         }
     
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    throw new UnintentionalCodeFirstException();
+        //}
     
-        public DbSet<RaceDistance> RaceDistance { get; set; }
-        public DbSet<RaceHistory> RaceHistory { get; set; }
-        public DbSet<RaceStage> RaceStage { get; set; }
-        public DbSet<Race> Race { get; set; }
+        public DbSet<ChildRace> ChildRaces { get; set; }
+        public DbSet<RaceHistory> RaceHistories { get; set; }
+        public DbSet<Race> Races { get; set; }
+        public DbSet<RaceSeria> RaceSerias { get; set; }
+        public DbSet<RaceTag> RaceTags { get; set; }
+        public DbSet<RaceType> RaceTypes { get; set; }
+        public DbSet<Tag> Tags { get; set; }
     }
 }

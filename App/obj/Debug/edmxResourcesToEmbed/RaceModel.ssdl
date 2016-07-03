@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище RacemapModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChildRaces">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TypeId" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Races">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="Place" Type="nvarchar" MaxLength="500" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryFull" Type="nvarchar" MaxLength="500" />
+    <Property Name="Url" Type="nvarchar" MaxLength="500" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+    <Property Name="Lng" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TypeId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceSerias">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RaceTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TagId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ParentId" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="Хранилище RacemapModelContainer">
+    <EntitySet Name="ChildRaces" EntityType="Self.ChildRaces" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceSerias" EntityType="Self.RaceSerias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceTags" EntityType="Self.RaceTags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceTypes" EntityType="Self.RaceTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

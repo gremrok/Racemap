@@ -727,3 +727,36 @@ ul#social li
 
 		}
 }
+
+.area
+{
+    border: 5px dotted #ccc;    
+    padding: 50px;    
+    text-align: center;    
+}
+
+.drag
+{
+    border: 5px dotted green;            
+    background-color: yellow;
+}
+
+#result ul{
+    list-style: none;
+    margin-top:20px;
+}
+
+    #result ul li
+    {
+        border-bottom: 1px solid #ccc;
+        margin-bottom: 10px;    
+    }
+
+.markers{
+    list-style: none;
+}
+
+.marker-list-item{
+    margin-left: -40px;
+    font-size:medium;
+}

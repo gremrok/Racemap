@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using Admin.Models;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Admin.Controllers
 {
@@ -16,16 +17,16 @@ namespace Admin.Controllers
     public class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            : this(new AppUserManager(new UserStore<Models.AspNetUser>(new RacemapEntities())))
         {
         }
 
-        public AccountController(UserManager<ApplicationUser> userManager)
+        public AccountController(AppUserManager userManager)
         {
             UserManager = userManager;
         }
 
-        public UserManager<ApplicationUser> UserManager { get; private set; }
+        public AppUserManager UserManager { get; private set; }
 
         //
         // GET: /Account/Login
@@ -43,13 +44,19 @@ namespace Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+
             if (ModelState.IsValid)
             {
+                var userManager = HttpContext.GetOwinContext().GetUserManager<AppUserManager>();
+                var authManager = HttpContext.GetOwinContext().Authentication;
+
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    var ident = await userManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                    AuthenticationManager.SignIn(
+                        new AuthenticationProperties { IsPersistent = false }, new[] { ident });
+                    return Redirect(returnUrl ?? Url.Action("Index", "Home"));
                 }
                 else
                 {
@@ -78,16 +85,16 @@ namespace Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                var user = new Models.AspNetUser() { UserName = model.UserName };
+                var result = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+                if (result != null)
                 {
                     await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    AddErrors(result);
+                    
                 }
             }
 
@@ -265,7 +272,7 @@ namespace Admin.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new Models.AspNetUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -331,7 +338,7 @@ namespace Admin.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        private async Task SignInAsync(Models.AspNetUser user, bool isPersistent)
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
             var identity = await UserManager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);

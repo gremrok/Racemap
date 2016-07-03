@@ -19,14 +19,14 @@ namespace Admin.Controllers
         // GET: api/Races
         public IQueryable<Race> GetRace()
         {
-            return db.Race.Where(o=> o.Lat == null || o.Lng == null);
+            return db.Races.Where(o=> o.Lat == null || o.Lng == null);
         }
 
         // GET: api/Races/5
         [ResponseType(typeof(Race))]
         public IHttpActionResult GetRace(int id)
         {
-            Race race = db.Race.Find(id);
+            Race race = db.Races.Find(id);
             if (race == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace Admin.Controllers
 
         // PUT: api/Races/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRace(int id, Race race)
+        public IHttpActionResult PutRace(Guid id, Race race)
         {
             if (!ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Admin.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Race.Add(race);
+            db.Races.Add(race);
 
             try
             {
@@ -104,13 +104,13 @@ namespace Admin.Controllers
         [ResponseType(typeof(Race))]
         public IHttpActionResult DeleteRace(int id)
         {
-            Race race = db.Race.Find(id);
+            Race race = db.Races.Find(id);
             if (race == null)
             {
                 return NotFound();
             }
 
-            db.Race.Remove(race);
+            db.Races.Remove(race);
             db.SaveChanges();
 
             return Ok(race);
@@ -125,9 +125,9 @@ namespace Admin.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RaceExists(int id)
+        private bool RaceExists(Guid id)
         {
-            return db.Race.Count(e => e.Id == id) > 0;
+            return db.Races.Count(e => e.Id == id) > 0;
         }
     }
 }

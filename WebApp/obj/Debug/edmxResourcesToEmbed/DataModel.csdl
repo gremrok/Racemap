@@ -1,65 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="racemapModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="racemapEntities" p1:LazyLoadingEnabled="true">
-    <EntitySet Name="RaceDistance" EntityType="racemapModel.RaceDistance" />
-    <EntitySet Name="RaceHistory" EntityType="racemapModel.RaceHistory" />
-    <EntitySet Name="RaceStage" EntityType="racemapModel.RaceStage" />
-    <EntitySet Name="Race" EntityType="racemapModel.Race" />
+    <EntitySet Name="ChildRaces" EntityType="racemapModel.ChildRace" />
+    <EntitySet Name="RaceHistories" EntityType="racemapModel.RaceHistory" />
+    <EntitySet Name="Races" EntityType="racemapModel.Race" />
+    <EntitySet Name="RaceSerias" EntityType="racemapModel.RaceSeria" />
+    <EntitySet Name="RaceTags" EntityType="racemapModel.RaceTag" />
+    <EntitySet Name="RaceTypes" EntityType="racemapModel.RaceType" />
+    <EntitySet Name="Tags" EntityType="racemapModel.Tag" />
   </EntityContainer>
-  <EntityType Name="RaceDistance">
+  <EntityType Name="ChildRace">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Length" Type="Decimal" Precision="18" Scale="0" />
-    <Property Name="Duration" Type="Time" Precision="7" />
-    <Property Name="Track" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
     <Property Name="RaceId" Type="Guid" />
+    <Property Name="TypeId" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="RaceHistory">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="RaceId" Type="Guid" />
-    <Property Name="StartDate" Type="DateTime" Precision="0" />
-    <Property Name="EndDate" Type="DateTime" Precision="0" />
-    <Property Name="IsCancelled" Type="Boolean" />
-    <Property Name="Year" Type="Int32" />
-  </EntityType>
-  <EntityType Name="RaceStage">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Guid" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-    <Property Name="TypeId" Type="Guid" />
-    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="RaceHistoryId" Type="Guid" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="3" />
-    <Property Name="Track" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="OrderId" Type="Int32" />
+    <Property Name="RaceId" Type="Guid" Nullable="false" />
+    <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Race">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
     <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-    <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="WebSite" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="StartDate" Type="DateTime" Precision="3" />
-    <Property Name="EndDate" Type="DateTime" Precision="3" />
-    <Property Name="Lat" Type="Double" />
-    <Property Name="Lng" Type="Double" />
-    <Property Name="Source" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
-    <Property Name="ContactPerson" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="Categories" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Place" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryFull" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Lng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RaceId" Type="Guid" />
+    <Property Name="TypeId" Type="Guid" />
+  </EntityType>
+  <EntityType Name="RaceSeria">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="RaceTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="RaceId" Type="Guid" />
+    <Property Name="TagId" Type="Guid" />
+  </EntityType>
+  <EntityType Name="RaceType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ParentId" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73aa43aa2b06480a934037bc5182660d" Name="Diagram1">
+        <EntityTypeShape EntityType="RacemapModel.AhotuRace" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="RacemapModel.AspNetRole" Width="1.5" PointX="0.75" PointY="2.5" />
+        <EntityTypeShape EntityType="RacemapModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="RacemapModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="RacemapModel.ChildRace" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="RacemapModel.Race" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="RacemapModel.RaceSeria" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="RacemapModel.RaceTag" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="RacemapModel.RaceType" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="RacemapModel.Tag" Width="1.5" PointX="8.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

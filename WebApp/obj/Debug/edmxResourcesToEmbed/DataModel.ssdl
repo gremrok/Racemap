@@ -1,84 +1,80 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="racemapModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'racemap.dbo.Race' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="Race">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="500" />
-    <Property Name="Description" Type="nvarchar(max)" />
-    <Property Name="Address" Type="nvarchar" MaxLength="2000" />
-    <Property Name="Phone" Type="nvarchar" MaxLength="100" />
-    <Property Name="Email" Type="nvarchar" MaxLength="500" />
-    <Property Name="WebSite" Type="nvarchar" MaxLength="500" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="EndDate" Type="datetime" />
-    <Property Name="Lat" Type="float" />
-    <Property Name="Lng" Type="float" />
-    <Property Name="Source" Type="nchar" MaxLength="200" />
-    <Property Name="ContactPerson" Type="nvarchar" MaxLength="500" />
-    <Property Name="Categories" Type="nvarchar" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="RaceDistance">
+  <EntityType Name="ChildRaces">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-    <Property Name="Length" Type="decimal" Precision="18" Scale="0" />
-    <Property Name="Duration" Type="time" Precision="7" />
-    <Property Name="Track" Type="nvarchar(max)" />
-    <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
     <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TypeId" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="RaceHistory">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="RaceId" Type="uniqueidentifier" />
-    <Property Name="StartDate" Type="date" />
-    <Property Name="EndDate" Type="date" />
-    <Property Name="IsCancelled" Type="bit" />
-    <Property Name="Year" Type="int" />
+    <Property Name="RaceId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
-  <EntityType Name="RaceStage">
+  <EntityType Name="Races">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="50" />
+    <Property Name="Place" Type="nvarchar" MaxLength="500" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Category" Type="nvarchar" MaxLength="50" />
+    <Property Name="CategoryFull" Type="nvarchar" MaxLength="500" />
+    <Property Name="Url" Type="nvarchar" MaxLength="500" />
+    <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+    <Property Name="Lng" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TypeId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceSerias">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Name" Type="nchar" MaxLength="50" />
-    <Property Name="TypeId" Type="uniqueidentifier" />
-    <Property Name="Description" Type="nvarchar" MaxLength="500" />
-    <Property Name="RaceHistoryId" Type="uniqueidentifier" />
-    <Property Name="StartDate" Type="datetime" />
-    <Property Name="EndDate" Type="datetime" />
-    <Property Name="Track" Type="nvarchar(max)" />
-    <Property Name="OrderId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RaceTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RaceId" Type="uniqueidentifier" />
+    <Property Name="TagId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="RaceTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ParentId" Type="uniqueidentifier" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityContainer Name="racemapModelStoreContainer">
-    <EntitySet Name="RaceDistance" EntityType="Self.RaceDistance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChildRaces" EntityType="Self.ChildRaces" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RaceHistory" EntityType="Self.RaceHistory" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="RaceStage" EntityType="Self.RaceStage" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Race" EntityType="Self.Race" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-[Race].[Id] AS [Id], 
-[Race].[Name] AS [Name], 
-[Race].[Description] AS [Description], 
-[Race].[Address] AS [Address], 
-[Race].[Phone] AS [Phone], 
-[Race].[Email] AS [Email], 
-[Race].[WebSite] AS [WebSite], 
-[Race].[StartDate] AS [StartDate], 
-[Race].[EndDate] AS [EndDate], 
-[Race].[Lat] AS [Lat], 
-[Race].[Lng] AS [Lng], 
-[Race].[Source] AS [Source], 
-[Race].[ContactPerson] AS [ContactPerson], 
-[Race].[Categories] AS [Categories]
-FROM [dbo].[Race] AS [Race]</DefiningQuery>
-    </EntitySet>
+    <EntitySet Name="Races" EntityType="Self.Races" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceSerias" EntityType="Self.RaceSerias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceTags" EntityType="Self.RaceTags" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RaceTypes" EntityType="Self.RaceTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

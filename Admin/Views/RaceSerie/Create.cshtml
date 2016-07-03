@@ -1,4 +1,4 @@
-﻿@model Admin.RaceSerie
+﻿@model Admin.RaceSeria
 
 @{
     ViewBag.Title = "Create";
@@ -7,11 +7,11 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm("Create", "RaceSerie", FormMethod.Post))
+@using (Html.BeginForm("Create", "RaceSeria", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <div class="form-horizontal">
-        <h4>RaceSerie</h4>
+        <h4>RaceSeria</h4>
         <hr />
         @Html.ValidationSummary(true)
 

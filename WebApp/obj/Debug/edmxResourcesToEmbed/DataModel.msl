@@ -1,61 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="racemapModelStoreContainer" CdmEntityContainer="racemapEntities">
-    <EntitySetMapping Name="RaceDistance">
-      <EntityTypeMapping TypeName="racemapModel.RaceDistance">
-        <MappingFragment StoreEntitySet="RaceDistance">
-          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Track" ColumnName="Track" />
-          <ScalarProperty Name="Duration" ColumnName="Duration" />
-          <ScalarProperty Name="Length" ColumnName="Length" />
+    <EntitySetMapping Name="ChildRaces">
+      <EntityTypeMapping TypeName="racemapModel.ChildRace">
+        <MappingFragment StoreEntitySet="ChildRaces">
+          <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RaceHistory">
+    <EntitySetMapping Name="RaceHistories">
       <EntityTypeMapping TypeName="racemapModel.RaceHistory">
         <MappingFragment StoreEntitySet="RaceHistory">
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="IsCancelled" ColumnName="IsCancelled" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="RaceId" ColumnName="RaceId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="RaceStage">
-      <EntityTypeMapping TypeName="racemapModel.RaceStage">
-        <MappingFragment StoreEntitySet="RaceStage">
-          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-          <ScalarProperty Name="Track" ColumnName="Track" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="RaceHistoryId" ColumnName="RaceHistoryId" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+    <EntitySetMapping Name="Races">
+      <EntityTypeMapping TypeName="racemapModel.Race">
+        <MappingFragment StoreEntitySet="Races">
           <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Lng" ColumnName="Lng" />
+          <ScalarProperty Name="Tags" ColumnName="Tags" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="CategoryFull" ColumnName="CategoryFull" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RaceSerias">
+      <EntityTypeMapping TypeName="racemapModel.RaceSeria">
+        <MappingFragment StoreEntitySet="RaceSerias">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Race">
-      <EntityTypeMapping TypeName="racemapModel.Race">
-        <MappingFragment StoreEntitySet="Race">
-          <ScalarProperty Name="Categories" ColumnName="Categories" />
-          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
-          <ScalarProperty Name="Source" ColumnName="Source" />
-          <ScalarProperty Name="Lng" ColumnName="Lng" />
-          <ScalarProperty Name="Lat" ColumnName="Lat" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="WebSite" ColumnName="WebSite" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
+    <EntitySetMapping Name="RaceTags">
+      <EntityTypeMapping TypeName="racemapModel.RaceTag">
+        <MappingFragment StoreEntitySet="RaceTags">
+          <ScalarProperty Name="TagId" ColumnName="TagId" />
+          <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RaceTypes">
+      <EntityTypeMapping TypeName="racemapModel.RaceType">
+        <MappingFragment StoreEntitySet="RaceTypes">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="racemapModel.Tag">
+        <MappingFragment StoreEntitySet="Tags">
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

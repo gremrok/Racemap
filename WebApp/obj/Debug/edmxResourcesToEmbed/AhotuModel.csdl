@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RacemapModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RacemapEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Races" EntityType="RacemapModel.Race" />
+  </EntityContainer>
+  <EntityType Name="Race">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Place" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Type" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Category" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CategoryFull" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Url" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Tags" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Lng" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Lat" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+</Schema>

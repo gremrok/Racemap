@@ -1,0 +1,44 @@
+﻿@model IEnumerable<App.Races>
+@using GridMvc.Html
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Соревнования";
+}
+<h2>Index</h2>
+
+<p><span>
+    @Html.ActionLink("Создать", "Create")
+</span><span class="pull-right"><a class="js-grid">Таблица</a>/<a class="js-map">Карта</a></span></p>
+
+@Html.Grid(Model).Named("grid").Columns(columns =>
+{
+    columns.Add(foo => foo.Id, true);
+    columns.Add(foo => foo.Name).Titled("Name").SetWidth(100).Sortable(true).Filterable(true);
+    columns.Add(foo => foo.Description).SetWidth(100).Sortable(true);
+    columns.Add(foo => foo.Place).SetWidth(100).Sortable(true).Filterable(true);
+    columns.Add(foo => foo.Date).SetWidth(30).Sortable(true).Filterable(true);
+    columns.Add(foo => foo.Type).SetWidth(50).Sortable(true).Filterable(true);
+    columns.Add(foo => foo.Category).SetWidth(50).Sortable(true).Filterable(true);
+    columns.Add(foo => foo.Tags).SetWidth(50).Sortable(true).Filterable(true);
+}).WithPaging(10)
+
+<div id="map-canvas" class="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js">
+</script>
+<script src="Scripts/script.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.map').hide();
+        $('.js-grid').on('click', function () {
+            $('.grid-mvc').show();
+            $('.map').hide();
+        });
+        $('.js-map').on('click', function () {
+            $('.grid-mvc').hide();
+            $('.map').show();
+        });
+        pageGrids.grid.onRowSelect(function (e) {
+            alert(e.row.Id);
+        });
+    });
+    </script>

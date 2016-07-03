@@ -15,10 +15,7 @@ namespace WebApp
     public partial class RaceHistory
     {
         public System.Guid Id { get; set; }
-        public Nullable<System.Guid> RaceId { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.DateTime> EndDate { get; set; }
-        public Nullable<bool> IsCancelled { get; set; }
-        public Nullable<int> Year { get; set; }
+        public System.Guid RaceId { get; set; }
+        public string Date { get; set; }
     }
 }

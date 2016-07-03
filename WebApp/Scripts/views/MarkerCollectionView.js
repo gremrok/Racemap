@@ -5,7 +5,12 @@
         tagName: 'ul',
         className: 'markers',
         onRender: function () {
-            this.$el.css('height', '200px').css('overflow-y', 'auto').css('overflow-x', 'hidden');
+            this.$el
+                .css('height', '200px')
+                .css('width', '400px')
+                .css('overflow-y', 'auto')
+                .css('overflow-x', 'hidden');
+            
         }
     });
     return MarkerCollectionView;

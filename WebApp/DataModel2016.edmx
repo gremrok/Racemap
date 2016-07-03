@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RaceboardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Raceboard.dbo.ChildRaces' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ChildRaces">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RaceId" Type="uniqueidentifier" />
+          <Property Name="TypeId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Raceboard.dbo.Races' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Races">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Place" Type="nvarchar" MaxLength="500" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryFull" Type="nvarchar" MaxLength="500" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tags" Type="nvarchar" MaxLength="500" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lng" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RaceId" Type="uniqueidentifier" />
+          <Property Name="TypeId" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Raceboard.dbo.RaceTags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RaceTags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RaceId" Type="uniqueidentifier" />
+          <Property Name="TagId" Type="uniqueidentifier" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Raceboard.dbo.RaceTypes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="RaceTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Raceboard.dbo.Tags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="RaceboardModelStoreContainer">
+          <EntitySet Name="ChildRaces" EntityType="Self.ChildRaces" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ChildRaces].[Id] AS [Id], 
+[ChildRaces].[RaceId] AS [RaceId], 
+[ChildRaces].[TypeId] AS [TypeId], 
+[ChildRaces].[Name] AS [Name], 
+[ChildRaces].[Description] AS [Description], 
+[ChildRaces].[TypeName] AS [TypeName]
+FROM [dbo].[ChildRaces] AS [ChildRaces]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Races" EntityType="Self.Races" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Races].[Name] AS [Name], 
+[Races].[Description] AS [Description], 
+[Races].[Date] AS [Date], 
+[Races].[Place] AS [Place], 
+[Races].[Type] AS [Type], 
+[Races].[Category] AS [Category], 
+[Races].[CategoryFull] AS [CategoryFull], 
+[Races].[Url] AS [Url], 
+[Races].[Tags] AS [Tags], 
+[Races].[Lat] AS [Lat], 
+[Races].[Lng] AS [Lng], 
+[Races].[Id] AS [Id], 
+[Races].[RaceId] AS [RaceId], 
+[Races].[TypeId] AS [TypeId]
+FROM [dbo].[Races] AS [Races]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RaceTags" EntityType="Self.RaceTags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[RaceTags].[Id] AS [Id], 
+[RaceTags].[RaceId] AS [RaceId], 
+[RaceTags].[TagId] AS [TagId]
+FROM [dbo].[RaceTags] AS [RaceTags]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RaceTypes" EntityType="Self.RaceTypes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[RaceTypes].[Id] AS [Id], 
+[RaceTypes].[ParentId] AS [ParentId], 
+[RaceTypes].[Name] AS [Name]
+FROM [dbo].[RaceTypes] AS [RaceTypes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Tags" EntityType="Self.Tags" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Tags].[Id] AS [Id], 
+[Tags].[Name] AS [Name]
+FROM [dbo].[Tags] AS [Tags]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RaceboardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RaceboardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChildRaces" EntityType="RaceboardModel.ChildRace" />
+          <EntitySet Name="Races" EntityType="RaceboardModel.Race" />
+          <EntitySet Name="RaceTags" EntityType="RaceboardModel.RaceTag" />
+          <EntitySet Name="RaceTypes" EntityType="RaceboardModel.RaceType" />
+          <EntitySet Name="Tags" EntityType="RaceboardModel.Tag" />
+        </EntityContainer>
+        <EntityType Name="ChildRace">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RaceId" Type="Guid" />
+          <Property Name="TypeId" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Race">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Place" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryFull" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Tags" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RaceId" Type="Guid" />
+          <Property Name="TypeId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="RaceTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="RaceId" Type="Guid" />
+          <Property Name="TagId" Type="Guid" />
+        </EntityType>
+        <EntityType Name="RaceType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RaceboardModelStoreContainer" CdmEntityContainer="RaceboardEntities">
+          <EntitySetMapping Name="ChildRaces">
+            <EntityTypeMapping TypeName="RaceboardModel.ChildRace">
+              <MappingFragment StoreEntitySet="ChildRaces">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Races">
+            <EntityTypeMapping TypeName="RaceboardModel.Race">
+              <MappingFragment StoreEntitySet="Races">
+                <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Tags" ColumnName="Tags" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="CategoryFull" ColumnName="CategoryFull" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaceTags">
+            <EntityTypeMapping TypeName="RaceboardModel.RaceTag">
+              <MappingFragment StoreEntitySet="RaceTags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="RaceId" ColumnName="RaceId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaceTypes">
+            <EntityTypeMapping TypeName="RaceboardModel.RaceType">
+              <MappingFragment StoreEntitySet="RaceTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="RaceboardModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -6,3 +6,10 @@ C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Deb
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\bin\Debug\EPPlus.xml
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\obj\Debug\Importer.exe
 C:\Users\Kaktus\Documents\Visual Studio 2013\Projects\theAgency\Importer\obj\Debug\Importer.pdb
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\bin\Debug\Importer.exe.config
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\bin\Debug\Importer.exe
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\bin\Debug\Importer.pdb
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\bin\Debug\EPPlus.xml
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\obj\Debug\Importer.csprojResolveAssemblyReference.cache
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\obj\Debug\Importer.exe
+C:\Users\Alexey\Documents\GitHub\Racemap\Importer\obj\Debug\Importer.pdb

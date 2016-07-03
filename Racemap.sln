@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{88AC5EA7-76D6-4886-9A15-AB65FF21A747}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Importer", "Importer\Importer.csproj", "{F8ABF486-9155-4F19-AF3B-23CFAD672A8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Admin", "Admin\Admin.csproj", "{0D12333C-47E8-4BA7-BB16-47953B77FCED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{13B49585-964D-4001-A1A8-675B8BE3262F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolarPersonalTrainerApi", "D:\MailCloud\Download\PolarPersonalTrainerToStrava-master\PolarPersonalTrainerApi\PolarPersonalTrainerApi.csproj", "{6E59298B-96E5-4517-8612-8C71325A2033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,14 @@ Global
 		{F8ABF486-9155-4F19-AF3B-23CFAD672A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8ABF486-9155-4F19-AF3B-23CFAD672A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8ABF486-9155-4F19-AF3B-23CFAD672A8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D12333C-47E8-4BA7-BB16-47953B77FCED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D12333C-47E8-4BA7-BB16-47953B77FCED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D12333C-47E8-4BA7-BB16-47953B77FCED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D12333C-47E8-4BA7-BB16-47953B77FCED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13B49585-964D-4001-A1A8-675B8BE3262F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13B49585-964D-4001-A1A8-675B8BE3262F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13B49585-964D-4001-A1A8-675B8BE3262F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13B49585-964D-4001-A1A8-675B8BE3262F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E59298B-96E5-4517-8612-8C71325A2033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E59298B-96E5-4517-8612-8C71325A2033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E59298B-96E5-4517-8612-8C71325A2033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E59298B-96E5-4517-8612-8C71325A2033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
